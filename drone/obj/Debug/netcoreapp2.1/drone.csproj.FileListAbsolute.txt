@@ -1,0 +1,12 @@
+C:\Users\divad\Programacion\entrevistas\Tiendeo\drone\bin\Debug\netcoreapp2.1\drone.deps.json
+C:\Users\divad\Programacion\entrevistas\Tiendeo\drone\bin\Debug\netcoreapp2.1\drone.runtimeconfig.json
+C:\Users\divad\Programacion\entrevistas\Tiendeo\drone\bin\Debug\netcoreapp2.1\drone.runtimeconfig.dev.json
+C:\Users\divad\Programacion\entrevistas\Tiendeo\drone\bin\Debug\netcoreapp2.1\drone.dll
+C:\Users\divad\Programacion\entrevistas\Tiendeo\drone\bin\Debug\netcoreapp2.1\drone.pdb
+C:\Users\divad\Programacion\entrevistas\Tiendeo\drone\obj\Debug\netcoreapp2.1\drone.csprojAssemblyReference.cache
+C:\Users\divad\Programacion\entrevistas\Tiendeo\drone\obj\Debug\netcoreapp2.1\drone.csproj.CoreCompileInputs.cache
+C:\Users\divad\Programacion\entrevistas\Tiendeo\drone\obj\Debug\netcoreapp2.1\drone.AssemblyInfoInputs.cache
+C:\Users\divad\Programacion\entrevistas\Tiendeo\drone\obj\Debug\netcoreapp2.1\drone.AssemblyInfo.cs
+C:\Users\divad\Programacion\entrevistas\Tiendeo\drone\obj\Debug\netcoreapp2.1\drone.dll
+C:\Users\divad\Programacion\entrevistas\Tiendeo\drone\obj\Debug\netcoreapp2.1\drone.pdb
+C:\Users\divad\Programacion\entrevistas\Tiendeo\drone\bin\Debug\netcoreapp2.1\input.txt
