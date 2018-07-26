@@ -4,140 +4,142 @@ using System.Linq;
 using System.Text;
 using Xunit;
 using DroneNamespace;
-using static DroneNamespace.DroneHelpers;
+using static DroneNamespace.DroneParser;
 
 
 namespace drone_test
 {
-    
+
     public class DronteTests
     {
-    
+
 
         [Fact]
         public void TestRotateLeft()
         {
             var currentDirection = Direction.N;
-            currentDirection = RotateLeft(currentDirection);
-            Assert.Equal(Direction.W,currentDirection);
+            var drone = new Drone(currentDirection, (0, 0));
+            drone.RotateLeft();
+            Assert.Equal(Direction.W, drone.Direction);
 
-            currentDirection = RotateLeft(currentDirection);
-            Assert.Equal(Direction.S,currentDirection);
+            drone.RotateLeft();
+            Assert.Equal(Direction.S, drone.Direction);
 
-            currentDirection = RotateLeft(currentDirection);
-            Assert.Equal(Direction.E,currentDirection);
+            drone.RotateLeft();
+            Assert.Equal(Direction.E, drone.Direction);
 
-            currentDirection = RotateLeft(currentDirection);
-            Assert.Equal(Direction.N,currentDirection);
+            drone.RotateLeft();
+            Assert.Equal(Direction.N, drone.Direction);
         }
 
         [Fact]
         public void TestRotateRight()
         {
             var currentDirection = Direction.N;
-            currentDirection = RotateRight(currentDirection);
-            Assert.Equal(Direction.E,currentDirection);
+            var drone = new Drone(currentDirection, (0, 0));
+            drone.RotateRight();
+            Assert.Equal(Direction.E, drone.Direction);
 
-            currentDirection = RotateRight(currentDirection);
-            Assert.Equal(Direction.S,currentDirection);
+            drone.RotateRight();
+            Assert.Equal(Direction.S, drone.Direction);
 
-            currentDirection = RotateRight(currentDirection);
-            Assert.Equal(Direction.W,currentDirection);
+            drone.RotateRight();
+            Assert.Equal(Direction.W, drone.Direction);
 
-            currentDirection = RotateRight(currentDirection);
-            Assert.Equal(Direction.N,currentDirection);
-        } 
+            drone.RotateRight();
+            Assert.Equal(Direction.N, drone.Direction);
+        }
 
-        
+
 
         [Fact]
         public void TestMoveForward()
         {
-            var area = (w: 4,h: 4);
+            var area = (w: 4, h: 4);
 
-            Drone current = new Drone(Direction.N,(x: 3,y: 3));
-            current = MoveForward(current,area);
-            Assert.Equal((3,4),current.Position);
-            Assert.Equal(Direction.N,current.Direction);
+            Drone current = new Drone(Direction.N, (x: 3, y: 3));
+            current.MoveForward(area);
+            Assert.Equal((3, 4), current.Position);
+            Assert.Equal(Direction.N, current.Direction);
 
-            current = MoveForward(current,area); // Can't move anymore because area boundaries
-            Assert.Equal((3,4),current.Position);
-            Assert.Equal(Direction.N,current.Direction);
+            current.MoveForward(area); // Can't move anymore because area boundaries
+            Assert.Equal((3, 4), current.Position);
+            Assert.Equal(Direction.N, current.Direction);
 
         }
 
-        
+
 
         [Fact]
         public void TestMoveDrone()
         {
-            var area = (w: 5,h: 5);
-            Drone current = new Drone(Direction.N,(x: 3,y: 3));
-            current = MoveDrone(current,Movement.L,area);
-            Assert.Equal(Direction.W,current.Direction);
+            var area = (w: 5, h: 5);
+            Drone current = new Drone(Direction.N, (x: 3, y: 3));
+            current.MoveDrone(Movement.L, area);
+            Assert.Equal(Direction.W, current.Direction);
 
-            current = MoveDrone(current,Movement.M,area);
-            Assert.Equal((2,3),current.Position);
+            current.MoveDrone(Movement.M, area);
+            Assert.Equal((2, 3), current.Position);
 
-            current = MoveDrone(current,Movement.R,area);
-            Assert.Equal(Direction.N,current.Direction);
+            current.MoveDrone(Movement.R, area);
+            Assert.Equal(Direction.N, current.Direction);
         }
 
-        
+
 
         [Fact]
         public void TestParseArea()
         {
             string area = "5 4";
             var parsedArea = ParseArea(area);
-            Assert.Equal(5,parsedArea.w);
-            Assert.Equal(4,parsedArea.h);
+            Assert.Equal(5, parsedArea.w);
+            Assert.Equal(4, parsedArea.h);
         }
 
-        
-        
+
+
         [Fact]
         public void ParseRobot()
         {
             string data = "3 2 E";
             var drone = ParseDrone(data);
-            Assert.Equal(3,drone.Position.x);
-            Assert.Equal(2,drone.Position.y);
-            Assert.Equal(Direction.E,drone.Direction);                        
+            Assert.Equal(3, drone.Position.x);
+            Assert.Equal(2, drone.Position.y);
+            Assert.Equal(Direction.E, drone.Direction);
         }
 
-        
+
 
         [Fact]
         public void TestParseMovements()
         {
             string movements = "MLR";
             var movementsParse = ParseMovements(movements);
-            Assert.Equal(Movement.M,movementsParse[0]);
-            Assert.Equal(Movement.L,movementsParse[1]);
-            Assert.Equal(Movement.R,movementsParse[2]);
+            Assert.Equal(Movement.M, movementsParse[0]);
+            Assert.Equal(Movement.L, movementsParse[1]);
+            Assert.Equal(Movement.R, movementsParse[2]);
         }
 
         [Fact]
         public void TestDroneToString()
         {
-            var drone = new Drone(Direction.S,(3,4));
+            var drone = new Drone(Direction.S, (3, 4));
             var droneString = drone.DroneToString();
 
-            Assert.Equal("3 4 S",droneString);
+            Assert.Equal("3 4 S", droneString);
         }
-    
-        
+
+
 
         [Fact]
         public void TestExecuteDrone()
         {
-            var area = (5,5);
-            var drone = new Drone(Direction.E,(3,3));
-            var movements = new List<Movement> {Movement.M,Movement.M,Movement.R,Movement.M,Movement.M,Movement.R,Movement.M,Movement.R,Movement.R,Movement.M};
-            var result = ExecuteDrone(drone,movements,area);
+            var area = (5, 5);
+            var drone = new Drone(Direction.E, (3, 3));
+            var movements = new List<Movement> { Movement.M, Movement.M, Movement.R, Movement.M, Movement.M, Movement.R, Movement.M, Movement.R, Movement.R, Movement.M };
+            var result = drone.ExecuteMovements(movements, area);
 
-            Assert.Equal("5 1 E",result);
+            Assert.Equal("5 1 E", result);
         }
 
 
@@ -153,20 +155,14 @@ MMRMMRMRRM
 1 2 N
 LMLMLMLMMLMLMLMLMM";
 
-            var result = ExecuteProgram(input);
+            var result = DroneNamespace.Program.ExecuteProgram(input);
 
             var expected = @"3 3 N
 5 1 E
 1 4 N
 ";
 
-            Assert.Equal(expected,result);
+            Assert.Equal(expected, result);
         }
-    }
-
-    public static class DroneHelpers
-    {
-        
-
     }
 }
