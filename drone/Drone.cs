@@ -96,7 +96,7 @@ namespace DroneNamespace
             }
         }
 
-        public string DroneToString() => $"{Position.x} {Position.y} {Direction.ToString()}";
+        public override string ToString() => $"{Position.x} {Position.y} {Direction.ToString()}";
 
         public string ExecuteMovements(List<Movement> movements, (int w, int h) area)
         {
@@ -105,7 +105,7 @@ namespace DroneNamespace
                 MoveDrone(move, area);
             }
 
-            return DroneToString();
+            return ToString();
         }
     }
 }

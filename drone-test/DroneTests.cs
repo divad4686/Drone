@@ -124,7 +124,7 @@ namespace drone_test
         public void TestDroneToString()
         {
             var drone = new Drone(Direction.S, (3, 4));
-            var droneString = drone.DroneToString();
+            var droneString = drone.ToString();
 
             Assert.Equal("3 4 S", droneString);
         }

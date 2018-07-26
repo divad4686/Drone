@@ -6,7 +6,7 @@ namespace DroneNamespace
 {
     public class DroneParser
     {
-        public static (int w,int h) ParseArea(string area)
+        public static (int w, int h) ParseArea(string area)
         {
             var values = area.Split(" ");
             return (int.Parse(values[0]), int.Parse(values[1]));
@@ -15,7 +15,7 @@ namespace DroneNamespace
         public static Drone ParseDrone(string data)
         {
             var splitData = data.Split(" ");
-            return new Drone(Enum.Parse<Direction>(splitData[2]),(int.Parse(splitData[0]), int.Parse(splitData[1])));
+            return new Drone(Enum.Parse<Direction>(splitData[2]), (int.Parse(splitData[0]), int.Parse(splitData[1])));
         }
 
         public static List<Movement> ParseMovements(string movements) =>
