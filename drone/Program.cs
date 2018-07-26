@@ -11,8 +11,15 @@ namespace DroneNamespace
         static void Main(string[] args)
         {
             var input = File.ReadAllText("input.txt");
-            var result = ExecuteProgram(input);
-            Console.WriteLine(result);
+            try
+            {
+                var result = ExecuteProgram(input);
+                Console.WriteLine(result);
+            }
+            catch
+            {
+                Console.WriteLine("Input is incorrect");
+            }
         }
 
         public static string ExecuteProgram(string input)
